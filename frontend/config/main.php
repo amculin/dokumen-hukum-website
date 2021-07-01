@@ -5,14 +5,14 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-frontend',
+    'id' => 'dokumenhukum-frontend',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'gii'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
-            'cookieValidationKey' => '0sonGioW87Wnd92Nc76sslsdo1.sdxyTF7k1jjmwPS.ds976cdID1q0cdsYD12m'
+            'cookieValidationKey' => '0sonGioW87Wnd92Nc76sslFdo3.sdxyTUuV7k1jjmwPS.ds96cdID1q0cdsYD83m'
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -35,14 +35,35 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=db_dokumen_hukum_10062021',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8mb4',
+        ],
+        'view' => [
+            'theme' => [
+                'basePath' => '@frontend/themes/nexgen',
+                'baseUrl' => '@web/themes/nexgen',
+                'pathMap' => [
+                    '@app/views' => '@frontend/themes/nexgen/views',
+                ],
+            ],
+        ],
     ],
     'params' => $params,
+    'modules' => [
+        'gii' => [
+            'class' => 'yii\gii\Module',
+            // uncomment the following to add your IP if you are not connecting from localhost.
+            //'allowedIPs' => ['127.0.0.1', '::1'],
+        ]
+    ]
 ];
