@@ -1876,7 +1876,7 @@ header .navbar-expand .navbar-brand i {
 }
 
 header .navbar-expand .navbar-brand img {
-    height: var(--nav-brand-height);
+    height: 20px;/* var(--nav-brand-height); */
 }
 
 header .navbar-expand .navbar-brand .brand {

@@ -1,12 +1,14 @@
 <?php
 
 use common\models\Setting;
+use common\models\StaticPage;
 use frontend\assets\MainAsset;
 use yii\helpers\Html;
 
 MainAsset::register($this);
 
 $favicon = Setting::get('favicon');
+$services = StaticPage::getServices();
 
 $this->beginPage();
 ?>
@@ -80,36 +82,34 @@ $this->beginPage();
                 <div class="container header">
 
                     <a class="navbar-brand" href="/">
-                        <img src="<?php echo Setting::get('logo'); ?>" alt="NEXGEN">
+                        <img src="<?php echo Setting::get('logo'); ?>" alt="<?php echo Setting::get('title'); ?>" />
                     </a>
 
                     <div class="ml-auto"></div>
 
                     <ul class="navbar-nav items">
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link">HOME</a>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl('site/index'); ?>" class="nav-link">HOME</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link">LAYANAN <i class="icon-arrow-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a href="layanan/layanan-1" class="nav-link">Layanan 1</a></li>
-                                <li class="nav-item"><a href="layanan/layanan-2" class="nav-link">Layanan 2</a></li>
-                                <li class="nav-item"><a href="layanan/layanan-3" class="nav-link">Layanan 3</a></li>
-                                <li class="nav-item"><a href="layanan/layanan-4" class="nav-link">Layanan 4</a></li>
-                                <li class="nav-item"><a href="layanan/layanan-5" class="nav-link">Layanan 5</a></li>
-                                <li class="nav-item"><a href="layanan/layanan-6" class="nav-link">Layanan 6</a></li>
-                                <li class="nav-item"><a href="layanan/layanan-7" class="nav-link">Layanan 7</a></li>
-                                <li class="nav-item"><a href="layanan/layanan-8" class="nav-link">Layanan 8</a></li>
+                                <?php
+                                foreach ($services as $key => $val) {
+                                    $url = Yii::$app->urlManager->createAbsoluteUrl(['site/service', 'slug' => $val->slug]);
+                                    echo '<li class="nav-item"><a href="' . $url . '" class="nav-link">' . $val->title . '</a></li>';
+                                }
+                                ?>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link">TENTANG KAMI</a>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl('site/about'); ?>" class="nav-link">TENTANG KAMI</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link">KONTAK KAMI</a>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl('site/contact'); ?>" class="nav-link">KONTAK KAMI</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link">BLOG</a>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl('article/index'); ?>" class="nav-link">BLOG</a>
                         </li>
                     </ul>
 
@@ -138,74 +138,48 @@ $this->beginPage();
             <section id="footer" class="odd offers">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 col-lg-3 footer-left">
+                        <div class="col-12 col-lg-6 footer-left">
 
                             <a class="navbar-brand" href="/">
-                                <span class="brand">
-                                    <span class="featured">
-                                        <span class="first">NEX</span>
-                                    </span>
-                                    <span class="last">GEN</span>
-                                </span>
+                                <img src="<?php echo Setting::get('logo'); ?>" alt="<?php echo Setting::get('title'); ?>" />
                             </a>
-                            <p>A Functional HTML Template<br>for Corporate & Business.</p>
+                            
+                            <p>Pengurusan dokumen hukum dan legalitas<br />dengan mudah dan praktis.</p>
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="fas fa-phone-alt mr-2"></i>
-                                        +1 (305) 1234-5678
+                                        <?php echo Setting::get('phone_number'); ?>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="fas fa-envelope mr-2"></i>
-                                        hello@example.com
+                                        <?php echo Setting::get('email'); ?>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="fas fa-map-marker-alt mr-2"></i>
-                                        Main Avenue, 987
+                                        <?php echo Setting::get('address'); ?>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#contact" class="mt-4 btn outline-button smooth-anchor">GET IN TOUCH</a>
+                                    <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl('site/contact'); ?>" class="mt-4 btn outline-button smooth-anchor">GET IN TOUCH</a>
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-12 col-lg-9 p-0 footer-right">
+                        <div class="col-12 col-lg-6 p-0 footer-right">
                             <div class="row items">
-                                <div class="col-12 col-lg-4 item">
+                                <div class="col-12 col-lg-12 item">
                                     <div class="card">
-                                        <h4>About</h4>
-                                        <a href="#"><i class="icon-arrow-right"></i>The Company</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>Institutional</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>Social & Events</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>Innovation</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>Environment</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>Technology</a>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-4 item">
-                                    <div class="card">
-                                        <h4>Services</h4>
-                                        <a href="#"><i class="icon-arrow-right"></i>Audit & Assurance</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>Financial Advisory</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>Analytics M&A</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>Middle Marketing</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>Legal Consulting</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>Regulatory Risk</a>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-4 item">
-                                    <div class="card">
-                                        <h4>Support</h4>
-                                        <a href="#"><i class="icon-arrow-right"></i>Responsibility</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>Terms of Use</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>About Cookies</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>Privacy Policy</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>Accessibility</a>
-                                        <a href="#"><i class="icon-arrow-right"></i>Information</a>
+                                        <h4>Layanan</h4>
+                                        <?php
+                                        foreach ($services as $key => $val) {
+                                            $url = Yii::$app->urlManager->createAbsoluteUrl(['site/service', 'slug' => $val->slug]);
+                                            echo '<a href="' . $url . '"><i class="icon-arrow-right"></i>' . $val->title . '</a>';
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -218,13 +192,7 @@ $this->beginPage();
             <section id="copyright" class="p-3 odd copyright">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 col-md-6 p-3 text-center text-lg-left">
-                            <p>Enjoy the low price. We are tracking any intention of piracy.</p>
-                            <!--
-                                Suggestion: Replace the text above with a description of your website.
-                             -->
-                        </div>
-                        <div class="col-12 col-md-6 p-3 text-center text-lg-right">
+                        <div class="col-12 col-md-12 p-3 text-center text-lg-right">
                             <p>© 2021 dokumenhukum.com, crafted by FIT-FAT</p>
                         </div>
                     </div>

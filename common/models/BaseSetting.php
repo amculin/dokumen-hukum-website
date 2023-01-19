@@ -12,7 +12,7 @@ use Yii;
  * @property string $created_date
  * @property string|null $updated_date
  */
-class BaseSetting extends \yii\db\ActiveRecord
+class BaseSetting extends BaseModel
 {
     /**
      * {@inheritdoc}

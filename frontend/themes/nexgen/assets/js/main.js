@@ -663,7 +663,7 @@ jQuery(function ($) {
 11. Cookie Notice
 ----------------------------------------------*/
 
-jQuery(function ($) {
+/* jQuery(function ($) {
 
     'use strict';
 
@@ -701,4 +701,4 @@ jQuery(function ($) {
             marketing: ['SSID'] // Cookies in the marketing category.
         })
     }
-})
+}) */

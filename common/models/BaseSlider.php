@@ -52,10 +52,10 @@ class BaseSlider extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
-            'title_en' => 'Title En',
+            'title_en' => 'Title (English)',
             'caption' => 'Caption',
-            'caption_en' => 'Caption En',
-            'image_url' => 'Image Url',
+            'caption_en' => 'Caption (English)',
+            'image_url' => 'Image URL',
             'is_active' => 'Is Active',
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
