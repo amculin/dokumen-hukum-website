@@ -40,7 +40,8 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->save()) {
-                Yii::$app->session->setFlash('success', 'Terima kasih sudah menghubungi kami. Kami akan memberikan tanggapan sesegera mungkin.');
+                Yii::$app->session->setFlash('success', 'Terima kasih sudah menghubungi kami.
+                    Kami akan memberikan tanggapan sesegera mungkin.');
             } else {
                 Yii::$app->session->setFlash('error', 'Pesan gagal terkiri.');
             }
