@@ -42,7 +42,12 @@ class StaticPage extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content', 'slug', 'author_id', 'meta_description', 'meta_keyword', 'created_date', 'updated_date'], 'required'],
+            [
+                [
+                    'title', 'content', 'slug', 'author_id', 'meta_description',
+                    'meta_keyword', 'created_date', 'updated_date'
+                ], 'required'
+            ],
             [['content'], 'string'],
             [['author_id', 'hit', 'type', 'status'], 'integer'],
             [['created_date', 'updated_date'], 'safe'],
